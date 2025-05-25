@@ -1,105 +1,115 @@
-# API de Gestão Para Turmas
+# 📝 API de Atividades
 
-![Deploy](https://img.shields.io/badge/deploy-render-green)
+Este repositório contém a **API de Atividades**, desenvolvida com **Flask**, **SQLAlchemy** e **SQLite**, como parte de uma arquitetura baseada em **microsserviços**.
 
-Esta é uma API RESTful desenvolvida com Flask, utilizando MySQL como banco de dados, com suporte a Swagger (OpenAPI), Docker e deploy gratuito no Render (backend) e Railway (banco de dados).
+## 🧩 Arquitetura
 
-## 📚 Funcionalidades
+A API de Atividades é um **microsserviço** que faz parte de um sistema maior de gestão escolar, sendo responsável exclusivamente pelo gerenciamento de **atividades associadas a professores**.
 
-- CRUD de Alunos
-- CRUD de Professores
-- CRUD de Turmas
-- Documentação interativa via Swagger
+⚠️ **Esta API depende da sua API Principal de Gestão Escolar**, que deve estar em execução localmente ou em ambiente acessível. A comunicação entre os serviços ocorre via **requisições HTTP REST**, para validar:
 
-## 🚀 Deploy
+- Se o **professor existe** (`GET /api/professores/<id>`)
 
-A API está disponível em produção em:
+---
 
-🔗 [https://projetoflask-pu4h.onrender.com/docs](https://projetoflask-pu4h.onrender.com/docs)
+## 🚀 Tecnologias Utilizadas
 
-## ⚙️ Tecnologias
+- Python 3.x  
+- Flask  
+- SQLAlchemy  
+- SQLite (como banco de dados local)  
+- Requests (para consumo da API de professores)
 
-- Python 3.9
-- Flask 3.1
-- Flask-RestX
-- Flask-SQLAlchemy
-- PyMySQL
-- Docker
-- MySQL (Local)
+---
 
-## 📥 Clonando o projeto
+## ▶️ Como Executar a API
+
+### 1. Clone o repositório
 
 ```bash
-git clone git clone -b Backup https://github.com/cavinatto/ProjetoFlask.git
-cd APIgpt
-docker-compose up --build
+git clone https://github.com/cavinatto/API-SchoolSystem.git
+cd atividade-service
 ```
 
-## 🐋 Executando localmente com Docker
+### 2. Crie um ambiente virtual (opcional, mas recomendado)
 
 ```bash
-docker-compose up --build
+python3 -m venv venv
+source venv/bin/activate  # Linux/macOS
+venv\Scripts\activate     # Windows
 ```
 
-- Swagger: [http://localhost:8000/docs](http://localhost:8000/docs)
-- Endpoints: por exemplo, [http://localhost:8000/api/professores](http://localhost:8000/api/professores)
-
-## 🧪 Rodando os testes
+### 3. Instale as dependências
 
 ```bash
-python -m unittest discover tests
+pip install -r requirements.txt
 ```
 
-## 📂 Estrutura do Projeto
+### 4. Execute a API
 
 ```bash
-APIgpt/
-│
-├── alunos/
-│   ├── alunos_model.py
-│   └── alunos_routes.py
-│
-├── professores/
-│   ├── professores_model.py
-│   └── professores_routes.py
-│
-├── turmas/
-│   ├── turmas_model.py
-│   └── turmas_routes.py
-│
-├── swagger/
-│   ├── namespaces/
-│   │   ├── aluno_namespace.py
-│   │   ├── professor_namespace.py
-│   │   └── turma_namespace.py
-│   ├── swagger_config.py
-│   └── __init__.py
-│
-├── tests/
-│   ├── test_aluno.py
-│   ├── test_professor.py
-│   └── test_turma.py
-│
-├── config.py
-├── app.py
-├── requirements.txt
-├── Dockerfile
-├── docker-compose.yml
-└── entrypoint.sh
+python app.py
 ```
 
-## 📝 Observações
+A aplicação estará disponível em:
+📍 `http://localhost:5002`
 
-- Em produção, o banco de dados é fornecido pelo Railway.
-- Em ambiente local, o banco é iniciado via `docker-compose` com MySQL 5.7.
-- Certifique-se de criar um arquivo `.env` com suas variáveis locais se necessário.
+📝 **Observação:** O banco de dados é criado automaticamente na primeira execução.
 
-```env
-# .env (exemplo)
-DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=1234
-DB_NAME=escola
+---
+
+## 📡 Endpoints Principais
+
+- `GET /atividades` – Lista todas as atividades
+- `GET /atividades/<id>` – Retorna detalhes de uma atividade
+- `GET /atividades/<id_atividade>/professor/<id_professor>` – Retorna a atividade com verificação de associação do professor
+- `POST /atividades` – Cria uma nova atividade
+
+### Exemplo de corpo JSON para criação:
+
+```json
+{
+  "id_atividade": 3,
+  "id_professor": 1,
+  "enunciado": "Explique o ciclo de vida de um software.",
+  "resposta": "Requisitos > Projeto > Implementação > Testes > Deploy"
+}
 ```
 
 ---
+
+## 🔗 Dependência Externa
+
+Certifique-se de que a **API de Gerenciamento Escolar** esteja rodando em:
+
+```
+http://localhost:8000
+```
+
+A criação de uma atividade depende da verificação do id_professor nesse serviço.
+
+---
+
+## 📦 Estrutura do Projeto
+
+```
+atividade_service/
+│
+├── app.py
+├── config.py
+├── requirements.txt
+├── Dockerfile
+├── docker-compose.yml
+│
+├── controllers/
+│   └── atividade_controller.py
+│
+├── models/
+│   └── atividade_model.py
+│
+├── clients/
+│   └── professor_service_client.py
+│
+├── instance/
+│   └── atividades.db
+```
