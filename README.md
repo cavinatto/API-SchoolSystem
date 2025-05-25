@@ -28,7 +28,7 @@ A API de Atividades é um **microsserviço** que faz parte de um sistema maior d
 
 ```bash
 git clone https://github.com/cavinatto/API-SchoolSystem.git
-cd atividade-service
+cd API_atividades
 ```
 
 ### 2. Crie um ambiente virtual (opcional, mas recomendado)
