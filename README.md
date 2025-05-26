@@ -1,105 +1,129 @@
-# API de Gestão Para Turmas
+# 🏫 API de Reserva de Salas
 
-![Deploy](https://img.shields.io/badge/deploy-render-green)
+Este repositório contém a **API de Reserva de Salas**, desenvolvida com **Flask**, **SQLAlchemy** e **SQLite**, como parte de uma arquitetura baseada em **microsserviços**.
 
-Esta é uma API RESTful desenvolvida com Flask, utilizando MySQL como banco de dados, com suporte a Swagger (OpenAPI), Docker e deploy gratuito no Render (backend) e Railway (banco de dados).
+## 🧩 Arquitetura
 
-## 📚 Funcionalidades
+A API de Reserva de Salas é um **microsserviço** que integra o sistema principal de gerenciamento escolar, sendo responsável exclusivamente pelas **reservas de salas para turmas**.
 
-- CRUD de Alunos
-- CRUD de Professores
-- CRUD de Turmas
-- Documentação interativa via Swagger
+⚠️ **Esta API depende da API principal de gerenciamento escolar**, que deve estar em execução localmente. A comunicação entre os serviços ocorre via **requisições REST HTTP**, especialmente para verificar:
 
-## 🚀 Deploy
+- Se a **Turma** existe (`GET /api/turmas/<id>`)
 
-A API está disponível em produção em:
+---
 
-🔗 [https://projetoflask-pu4h.onrender.com/docs](https://projetoflask-pu4h.onrender.com/docs)
+## 🚀 Tecnologias Utilizadas
 
-## ⚙️ Tecnologias
-
-- Python 3.9
-- Flask 3.1
-- Flask-RestX
-- Flask-SQLAlchemy
-- PyMySQL
+- Python 3.x
+- Flask
+- SQLAlchemy
+- SQLite
 - Docker
-- MySQL (Local)
+- Requests (para requisições entre microsserviços)
 
-## 📥 Clonando o projeto
+---
 
-```bash
-git clone git clone -b Backup https://github.com/cavinatto/ProjetoFlask.git
-cd APIgpt
-docker-compose up --build
-```
+## ▶️ Como Executar a API
 
-## 🐋 Executando localmente com Docker
+### 1. Clone o repositório
 
 ```bash
-docker-compose up --build
+git clone https://github.com/seu-usuario/API_SchoolSystem.git
+cd API_reservas
 ```
 
-- Swagger: [http://localhost:8000/docs](http://localhost:8000/docs)
-- Endpoints: por exemplo, [http://localhost:8000/api/professores](http://localhost:8000/api/professores)
-
-## 🧪 Rodando os testes
+### 2. Crie a pasta `instance/` (caso não exista)
 
 ```bash
-python -m unittest discover tests
+mkdir instance
 ```
 
-## 📂 Estrutura do Projeto
+Ela armazenará o arquivo do banco `reservas.db`.
+
+---
+
+### 3. Executar com Docker
 
 ```bash
-APIgpt/
-│
-├── alunos/
-│   ├── alunos_model.py
-│   └── alunos_routes.py
-│
-├── professores/
-│   ├── professores_model.py
-│   └── professores_routes.py
-│
-├── turmas/
-│   ├── turmas_model.py
-│   └── turmas_routes.py
-│
-├── swagger/
-│   ├── namespaces/
-│   │   ├── aluno_namespace.py
-│   │   ├── professor_namespace.py
-│   │   └── turma_namespace.py
-│   ├── swagger_config.py
-│   └── __init__.py
-│
-├── tests/
-│   ├── test_aluno.py
-│   ├── test_professor.py
-│   └── test_turma.py
-│
-├── config.py
-├── app.py
-├── requirements.txt
-├── Dockerfile
-├── docker-compose.yml
-└── entrypoint.sh
+docker build -t api_reserva .
+docker run -d -p 5001:5001 \
+  -v $(pwd)/instance:/app/instance \
+  --name reserva-salas-container api_reserva
 ```
 
-## 📝 Observações
+> 💡 A flag `-v` garante que o banco `reservas.db` seja persistido no volume local.
 
-- Em produção, o banco de dados é fornecido pelo Railway.
-- Em ambiente local, o banco é iniciado via `docker-compose` com MySQL 5.7.
-- Certifique-se de criar um arquivo `.env` com suas variáveis locais se necessário.
+---
 
-```env
-# .env (exemplo)
-DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=1234
-DB_NAME=escola
+### 4. Executar localmente sem Docker
+
+#### 4.1. Crie ambiente virtual (opcional)
+
+```bash
+python -m venv venv
+source venv/bin/activate  # Linux/macOS
+venv\Scripts\activate     # Windows
+```
+
+#### 4.2. Instale as dependências
+
+```bash
+pip install -r requirements.txt
+```
+
+#### 4.3. Execute a API
+
+```bash
+python app.py
+```
+
+📍 A aplicação estará disponível em: `http://localhost:5001`
+
+---
+
+## 📡 Endpoints da API
+
+- `GET /reservas` – Lista todas as reservas
+- `POST /reservas` – Cria uma nova reserva
+
+### 📥 Exemplo de requisição POST:
+
+```json
+{
+  "turma_id": 1,
+  "sala": "Sala 101",
+  "data": "2025-05-25",
+  "hora_inicio": "08:00",
+  "hora_fim": "10:00"
+}
 ```
 
 ---
+
+## 🔗 Dependência Externa
+
+Certifique-se de que a **API principal** esteja rodando em:
+
+```
+http://localhost:8000
+```
+
+E que o endpoint `GET /api/turmas/<id>` esteja funcionando corretamente.
+
+---
+
+## 📦 Estrutura do Projeto
+
+```
+reserva-salas/
+│
+├── app.py
+├── reserva_model.py
+├── reserva_route.py
+├── database.py
+├── Dockerfile
+├── requirements.txt
+├── instance/
+│   └── reservas.db
+└── README.md
+```
