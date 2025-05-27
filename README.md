@@ -27,7 +27,7 @@ A API de Atividades é um **microsserviço** que faz parte de um sistema maior d
 ### 1. Clone o repositório
 
 ```bash
-git clone https://github.com/cavinatto/API-SchoolSystem.git
+git clone -b Atividades https://github.com/cavinatto/API-SchoolSystem.git
 cd API_atividades
 ```
 
