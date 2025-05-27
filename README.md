@@ -28,7 +28,7 @@ A API de Reserva de Salas é um **microsserviço** que integra o sistema princip
 ### 1. Clone o repositório
 
 ```bash
-git clone https://github.com/seu-usuario/API_SchoolSystem.git
+git clone -b Reserva https://github.com/cavinatto/API_SchoolSystem.git
 cd API_reservas
 ```
 
