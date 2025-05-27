@@ -30,7 +30,7 @@ A API está disponível em produção em:
 ## 📥 Clonando o projeto
 
 ```bash
-git clone git clone -b main https://github.com/cavinatto/API-SchoolSystem.git
+git clone -b main https://github.com/cavinatto/API-SchoolSystem.git
 cd APIgpt
 docker-compose up --build
 ```
