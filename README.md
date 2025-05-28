@@ -42,7 +42,7 @@ docker-compose up --build
 ```
 
 - Swagger: [http://localhost:8000/docs](http://localhost:8000/docs)
-- Endpoints: por exemplo, [http://127.0.0.1:8000/api/professores](http://127.0.0.1:8000/api/professores)
+- Endpoints: por exemplo, [http://localhost:8000/api/professores](http://localhost:8000/api/professores)
 
 ## 🧪 Rodando os testes
 
