@@ -77,7 +77,7 @@ pip install -r requirements.txt
 python app.py
 ```
 
-📍 A aplicação estará disponível em: `http://localhost:5001`
+📍 A aplicação estará disponível em: `http://127.0.0.1:5001`
 
 ---
 
@@ -105,7 +105,7 @@ python app.py
 Certifique-se de que a **API principal** esteja rodando em:
 
 ```
-http://localhost:8000
+http://127.0.0.1:8000
 ```
 
 E que o endpoint `GET /api/turmas/<id>` esteja funcionando corretamente.
