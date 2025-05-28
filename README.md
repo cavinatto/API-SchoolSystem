@@ -76,7 +76,7 @@ A aplicação estará disponível em:
 Certifique-se de que a **API de Gerenciamento Escolar** esteja rodando em:
 
 ```
-http://localhost:8000
+http://127.0.0.1:8000
 ```
 
 ***A criação de uma atividade depende da verificação do id_professor nesse serviço.***
