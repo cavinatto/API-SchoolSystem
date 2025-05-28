@@ -28,24 +28,17 @@ A API de Atividades é um **microsserviço** que faz parte de um sistema maior d
 
 ```bash
 git clone -b Atividades https://github.com/cavinatto/API-SchoolSystem.git
-cd API_atividades
+cd API-SchoolSystem/API_atividades
+docker compose up --build
 ```
 
-### 2. Crie um ambiente virtual (opcional, mas recomendado)
-
-```bash
-python3 -m venv venv
-source venv/bin/activate  # Linux/macOS
-venv\Scripts\activate     # Windows
-```
-
-### 3. Instale as dependências
+### 2. Instale as dependências
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Execute a API
+### 3. Execute a API
 
 ```bash
 python app.py
@@ -86,7 +79,7 @@ Certifique-se de que a **API de Gerenciamento Escolar** esteja rodando em:
 http://localhost:8000
 ```
 
-A criação de uma atividade depende da verificação do id_professor nesse serviço.
+***A criação de uma atividade depende da verificação do id_professor nesse serviço.***
 
 ---
 
