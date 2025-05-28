@@ -31,7 +31,7 @@ A API está disponível em produção em:
 
 ```bash
 git clone -b main https://github.com/cavinatto/API-SchoolSystem.git
-cd APIgpt
+cd Api-SchoolSystem/ApiGPT
 docker-compose up --build
 ```
 
@@ -93,13 +93,3 @@ APIgpt/
 - Em produção, o banco de dados é fornecido pelo Railway.
 - Em ambiente local, o banco é iniciado via `docker-compose` com MySQL 5.7.
 - Certifique-se de criar um arquivo `.env` com suas variáveis locais se necessário.
-
-```env
-# .env (exemplo)
-DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=1234
-DB_NAME=escola
-```
-
----
