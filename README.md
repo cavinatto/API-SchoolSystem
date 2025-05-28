@@ -45,7 +45,7 @@ python app.py
 ```
 
 A aplicação estará disponível em:
-📍 `http://localhost:5002`
+📍 `http://127.0.0.1:5002`
 
 📝 **Observação:** O banco de dados é criado automaticamente na primeira execução.
 
