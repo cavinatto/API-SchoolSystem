@@ -32,20 +32,30 @@ cd API-SchoolSystem/API_atividades
 docker compose up --build
 ```
 
-### 2. Instale as dependências
+### 2. Crie a pasta `instance/` na raiz do projeto (caso não exista)
+
+```bash
+mkdir instance
+```
+
+Ela armazenará o arquivo do banco `atividadess.db`.
+
+---
+
+### 3. Instale as dependências
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Execute a API
+### 4. Execute a API
 
 ```bash
 python app.py
 ```
 
 A aplicação estará disponível em:
-📍 `http://127.0.0.1:5002`
+📍 `http://127.0.0.1:5002` (ou em local host dependendo da sua execução)
 
 📝 **Observação:** O banco de dados é criado automaticamente na primeira execução.
 
@@ -76,7 +86,7 @@ A aplicação estará disponível em:
 Certifique-se de que a **API de Gerenciamento Escolar** esteja rodando em:
 
 ```
-http://127.0.0.1:8000
+http://127.0.0.1:8000 (ou em local host dependendo da sua execução)
 ```
 
 ***A criação de uma atividade depende da verificação do id_professor nesse serviço.***
