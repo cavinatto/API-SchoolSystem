@@ -29,10 +29,10 @@ A API de Reserva de Salas é um **microsserviço** que integra o sistema princip
 
 ```bash
 git clone -b Reserva https://github.com/cavinatto/API-SchoolSystem.git 
-cd API_reservas
+cd API-SchoolSystem/API_reservas
 ```
 
-### 2. Crie a pasta `instance/` (caso não exista)
+### 2. Crie a pasta `instance/` na raiz do projeto (caso não exista)
 
 ```bash
 mkdir instance
@@ -46,38 +46,24 @@ Ela armazenará o arquivo do banco `reservas.db`.
 
 ```bash
 docker build -t api_reserva .
-docker run -d -p 5001:5001 \
-  -v $(pwd)/instance:/app/instance \
-  --name reserva-salas-container api_reserva
+docker run -d -p 5001:5001 api-reserva
 ```
-
-> 💡 A flag `-v` garante que o banco `reservas.db` seja persistido no volume local.
-
----
 
 ### 4. Executar localmente sem Docker
 
-#### 4.1. Crie ambiente virtual (opcional)
-
-```bash
-python -m venv venv
-source venv/bin/activate  # Linux/macOS
-venv\Scripts\activate     # Windows
-```
-
-#### 4.2. Instale as dependências
+#### 4.1. Instale as dependências
 
 ```bash
 pip install -r requirements.txt
 ```
 
-#### 4.3. Execute a API
+#### 4.2. Execute a API
 
 ```bash
 python app.py
 ```
 
-📍 A aplicação estará disponível em: `http://127.0.0.1:5001`
+📍 A aplicação estará disponível em: `http://127.0.0.1:5001` (ou em local host dependendo da sua execução)
 
 ---
 
@@ -105,7 +91,7 @@ python app.py
 Certifique-se de que a **API principal** esteja rodando em:
 
 ```
-http://127.0.0.1:8000
+http://127.0.0.1:8000 (ou em localhost dependendo da sua execução)
 ```
 
 E que o endpoint `GET /api/turmas/<id>` esteja funcionando corretamente.
@@ -123,6 +109,7 @@ reserva-salas/
 ├── database.py
 ├── Dockerfile
 ├── requirements.txt
+├── config.py
 ├── instance/
 │   └── reservas.db
 └── README.md
